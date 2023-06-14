@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$ff-primary: 'Outfit', sans-serif;
+$color-white-100: #f5f7fa;
+$color-blue-100: #e9edf5;
+$color-blue-200: #cfd8e8;
+$color-blue-300: #a5b8d4;
+$color-blue-400: #7492bc;
+$color-blue-500: #5476a7;
+$color-blue-600: #405c89;
+$color-blue-700: #354b6f;
+$color-blue-800: #2f405d;
+$color-blue-900: #2b384f;
+$color-blue-950: #1c2435;
+
+$color-green-100: #d6ffe9;
+$color-green-200: #2dfb8e;
+$color-green-300: #02e56f;
+
+$color-red-100: #fef2f2;
+$color-red-200: #f87171;
+$color-red-300: #ef4444;
+
+
+body {
+    height: 100vh;
+    font-family: $ff-primary;
+    background-image: linear-gradient(180deg, $color-blue-100 50%, $color-blue-700 50%, $color-blue-700 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin mobile {
+    @media screen and (width >=375px) {
+        @content;
+    }
+}
+
+.main {
+    width: min(90%, 460px);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: min(2rem, 7.2vw);
+    box-shadow: 0 0 39px -7px rgba($color: $color-blue-400, $alpha: 0.17);
+
+    &__body {
+        display: grid;
+        gap: 1.5rem;
+        max-height: 400px;
+    }
+
+    &__content {
+        margin-top: 2rem;
+    }
+
+    &__message {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        color: $color-blue-800;
+    }
+
+}
+
+
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+
+    &__input {
+        background-color: #e9edf57e;
+        font-family: inherit;
+        height: 44px;
+        border-radius: 4px;
+        border: 1px solid $color-blue-200;
+        outline: 0;
+        transition: all 0.4s;
+        padding-left: .2rem;
+
+        @include mobile() {
+            padding: 0 .5rem;
+        }
+
+        &::placeholder {
+            color: #adb5bd;
+        }
+
+        &:is(:hover, :focus) {
+            border: 1px solid $color-blue-300;
+        }
+
+    }
+
+    &__submit {
+        cursor: pointer;
+        padding: 0 1rem;
+        background-color: $color-blue-500;
+        color: white;
+        font-family: inherit;
+        border: 0;
+        outline: 0;
+        border-radius: 6px;
+        transition: background-color 0.4s ease;
+
+        &:hover {
+            background-color: $color-blue-600;
+        }
+    }
+
+}
+
+.card {
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color-white-100;
+    box-shadow: 0 12px 39px -8px rgba($color: $color-blue-400, $alpha: .4);
+
+    &__text {
+        font-size: .875rem;
+        font-weight: 500;
+        color: $color-blue-700;
+    }
+
+    &__actions {
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    &__btn {
+        cursor: pointer;
+        width: 1.2rem;
+        aspect-ratio: 1;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        display: grid;
+        place-items: center;
+
+        svg {
+            width: 1rem;
+
+            path {
+                stroke: $color-blue-700;
+                transition: all 0.4s ease;
+            }
+        }
+
+        &:hover {
+            svg path {
+                stroke: $color-blue-300;
+            }
+        }
+    }
+}
+
+.message {
+    position: absolute;
+    inset: 20px 0 auto 0;
+    height: 200px;
+}
+
+.alert {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 50px;
+    display: grid;
+    border-radius: 4px;
+    place-content: center;
+    font-weight: 500;
+    transform: translateY(-40px);
+    opacity: 0;
+    transition: all 0.4s;
+
+    &.success {
+        background-color: $color-green-200;
+        box-shadow: 2px 12px 18px -7px rgba($color: $color-green-300, $alpha: .36);
+    }
+
+    &.error {
+        background-color: #ff7070;
+        color: $color-red-100;
+        box-shadow: 2px 12px 18px -7px rgba($color: $color-red-300, $alpha: .36);
+    }
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
